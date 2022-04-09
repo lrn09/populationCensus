@@ -26,11 +26,10 @@ public class Main {
                 .map(s -> s.getName() + " " + s.getFamily()).collect(Collectors.toList());
         Stream<Person> surnameStream = persons.stream();
         surnameStream.filter(s -> s.getEducation() == Education.HIGHER)
-                .filter(s -> s.getSex() == Sex.WOMAN)
-                .filter(x -> x.getAge() >= 18 && x.getAge() <= 60)
-                .filter(s -> s.getSex() == Sex.MAN)
-                .filter(x -> x.getAge() >= 18 && x.getAge() <= 65)
+                .filter(s -> s.getSex() == Sex.MAN ?
+                        s.getAge() > 18 && s.getAge() < 65 : s.getAge() > 18 && s.getAge() < 60)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
+//
     }
 }
